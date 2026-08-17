@@ -1,0 +1,53 @@
+# =========================================================
+#  HardcoreRespawnDelay - konfiguracja
+# =========================================================
+
+# Czy plugin jest aktywny.
+enabled: true
+
+# Czas oczekiwania na respawn, w sekundach.
+# 300 = 5 minut
+respawn-delay-seconds: 300
+
+# Czy podczas oczekiwania gracz ma być w trybie spectator
+# (może latać i obserwować, ale nie wchodzi w interakcje).
+use-spectator-mode: true
+
+# Czy podczas oczekiwania gracz ma widzieć duży timer (Title) na środku ekranu.
+show-title-timer: true
+
+# Co ile sekund odświeżać duży timer na ekranie (Title znika po chwili, trzeba go odświeżać).
+title-refresh-interval-seconds: 1
+
+# Czy dodatkowo pokazywać stały licznik w actionbar (mała belka nad hotbarem).
+show-actionbar-timer: true
+
+# Czy grać dźwięk graczowi, gdy jego czas oczekiwania się skończy.
+play-sound-on-respawn-ready: true
+sound-on-respawn-ready: "ENTITY_PLAYER_LEVELUP"
+
+# Czy rozgłaszać na cały serwer informację o śmierci gracza i czasie oczekiwania.
+broadcast-death: true
+
+# Czy rozgłaszać na cały serwer informację, że gracz wrócił do gry.
+broadcast-return: true
+
+# ---------------------------------------------------------
+# Teksty / wiadomości. Obsługiwane kody kolorów: & (np. &c = czerwony)
+# Placeholdery: {player}, {time}, {seconds}
+# ---------------------------------------------------------
+messages:
+  death-broadcast: "&c☠ {player} zginął! Będzie mógł wrócić do gry za {time}."
+  return-broadcast: "&a✔ {player} wrócił do gry!"
+
+  title-main: "&c&lOCZEKIWANIE NA RESPAWN"
+  title-subtitle: "&fMożesz wrócić do gry za: &e&l{time}"
+
+  title-ready-main: "&a&lMOŻESZ WRÓCIĆ DO GRY!"
+  title-ready-subtitle: "&fNaciśnij dowolny klawisz ruchu"
+
+  actionbar-waiting: "&7Respawn za: &e{time}"
+
+  respawn-message: "&aWracasz do gry! Powodzenia."
+
+  bypass-message: "&7(Masz uprawnienie hrd.bypass - odradzasz się natychmiast)"

@@ -1,53 +1,62 @@
 # =========================================================
-#  HardcoreRespawnDelay - konfiguracja
+#  HardcoreRespawnDelay - configuration
 # =========================================================
 
-# Czy plugin jest aktywny.
+# Whether the plugin is active.
 enabled: true
 
-# Czas oczekiwania na respawn, w sekundach.
-# 300 = 5 minut
+# Respawn wait time, in seconds.
+# 300 = 5 minutes
 respawn-delay-seconds: 300
 
-# Czy podczas oczekiwania gracz ma być w trybie spectator
-# (może latać i obserwować, ale nie wchodzi w interakcje).
+# Whether the waiting player is put into spectator mode
+# (can fly and observe, but cannot interact with anything).
 use-spectator-mode: true
 
-# Czy podczas oczekiwania gracz ma widzieć duży timer (Title) na środku ekranu.
+# Whether to restrict flying in spectator mode to a small radius around the death/respawn point
+# (the player can freely look around, but can't fly off to explore the map or scout ores through walls).
+restrict-spectator-movement: true
+
+# Radius (in blocks) the player can move within in spectator mode, if restrict-spectator-movement: true
+spectator-movement-radius: 5.0
+
+# Whether to show a large countdown title in the center of the screen while waiting.
 show-title-timer: true
 
-# Co ile sekund odświeżać duży timer na ekranie (Title znika po chwili, trzeba go odświeżać).
+# How often (in seconds) to refresh the on-screen title (titles fade after a moment, so it needs refreshing).
 title-refresh-interval-seconds: 1
 
-# Czy dodatkowo pokazywać stały licznik w actionbar (mała belka nad hotbarem).
-show-actionbar-timer: true
+# Whether to additionally show a persistent countdown in the action bar (small bar above the hotbar).
+show-actionbar-timer: false
 
-# Czy grać dźwięk graczowi, gdy jego czas oczekiwania się skończy.
+# Whether to play a sound to the player once their wait time is over.
 play-sound-on-respawn-ready: true
 sound-on-respawn-ready: "ENTITY_PLAYER_LEVELUP"
 
-# Czy rozgłaszać na cały serwer informację o śmierci gracza i czasie oczekiwania.
+# Whether to broadcast a server-wide message when a player dies and starts waiting.
 broadcast-death: true
 
-# Czy rozgłaszać na cały serwer informację, że gracz wrócił do gry.
+# Whether to broadcast a server-wide message when a player returns to the game.
 broadcast-return: true
 
 # ---------------------------------------------------------
-# Teksty / wiadomości. Obsługiwane kody kolorów: & (np. &c = czerwony)
-# Placeholdery: {player}, {time}, {seconds}
+# Messages. Supported color codes: & (e.g. &c = red)
+# Placeholders: {player}, {time}, {seconds}
 # ---------------------------------------------------------
 messages:
-  death-broadcast: "&c☠ {player} zginął! Będzie mógł wrócić do gry za {time}."
-  return-broadcast: "&a✔ {player} wrócił do gry!"
+  death-broadcast: "&c☠ {player} died! They will be able to respawn in {time}."
+  return-broadcast: "&a✔ {player} is back in the game!"
 
-  title-main: "&c&lOCZEKIWANIE NA RESPAWN"
-  title-subtitle: "&fMożesz wrócić do gry za: &e&l{time}"
+  title-main: "&c&lWAITING TO RESPAWN"
+  title-subtitle: "&fYou can respawn in: &e&l{time}"
 
-  title-ready-main: "&a&lMOŻESZ WRÓCIĆ DO GRY!"
-  title-ready-subtitle: "&fNaciśnij dowolny klawisz ruchu"
+  title-ready-main: "&a&lYOU CAN RESPAWN NOW!"
+  title-ready-subtitle: "&fPress any movement key"
 
-  actionbar-waiting: "&7Respawn za: &e{time}"
+  actionbar-waiting: "&7Respawn in: &e{time}"
 
-  respawn-message: "&aWracasz do gry! Powodzenia."
+  respawn-message: "&aYou're back in the game! Good luck."
 
-  bypass-message: "&7(Masz uprawnienie hrd.bypass - odradzasz się natychmiast)"
+  rejoin-still-waiting: "&eStill waiting to respawn: &6&l{time}"
+
+  bypass-message: "&7(You have the hrd.bypass permission - you respawn instantly)"

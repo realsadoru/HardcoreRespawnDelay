@@ -7,7 +7,7 @@ public final class ChatUtil {
 
     private ChatUtil() {}
 
-    /** Zamienia tekst z kodami kolorów & (np. &c&l) na komponent Adventure. */
+    /** Converts text with & color codes (e.g. &c&l) into an Adventure Component. */
     public static Component colorize(String raw) {
         if (raw == null) return Component.empty();
         return LegacyComponentSerializer.legacyAmpersand().deserialize(raw);

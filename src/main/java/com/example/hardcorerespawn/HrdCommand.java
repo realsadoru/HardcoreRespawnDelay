@@ -1,6 +1,5 @@
 package com.example.hardcorerespawn;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,49 +30,49 @@ public class HrdCommand implements CommandExecutor, TabCompleter {
         switch (args[0].toLowerCase()) {
             case "reload" -> {
                 plugin.reloadConfig();
-                sender.sendMessage(ChatUtil.colorize("&aHardcoreRespawnDelay: konfiguracja przeładowana."));
+                sender.sendMessage(ChatUtil.colorize("&aHardcoreRespawnDelay: configuration reloaded."));
             }
             case "revive" -> {
                 if (args.length < 2) {
-                    sender.sendMessage(ChatUtil.colorize("&cUżycie: /hrd revive <gracz>"));
+                    sender.sendMessage(ChatUtil.colorize("&cUsage: /hrd revive <player>"));
                     return true;
                 }
                 Player target = Bukkit.getPlayerExact(args[1]);
                 if (target == null) {
-                    sender.sendMessage(ChatUtil.colorize("&cGracz " + args[1] + " nie jest online."));
+                    sender.sendMessage(ChatUtil.colorize("&cPlayer " + args[1] + " is not online."));
                     return true;
                 }
                 if (!respawnManager.isWaiting(target.getUniqueId())) {
-                    sender.sendMessage(ChatUtil.colorize("&e" + target.getName() + " nie oczekuje obecnie na respawn."));
+                    sender.sendMessage(ChatUtil.colorize("&e" + target.getName() + " is not currently waiting to respawn."));
                     return true;
                 }
                 respawnManager.forceRelease(target);
-                sender.sendMessage(ChatUtil.colorize("&a" + target.getName() + " został natychmiast przywrócony do gry."));
+                sender.sendMessage(ChatUtil.colorize("&a" + target.getName() + " was immediately returned to the game."));
             }
             case "time" -> {
                 if (args.length < 3) {
-                    sender.sendMessage(ChatUtil.colorize("&cUżycie: /hrd time <gracz> <sekundy>"));
+                    sender.sendMessage(ChatUtil.colorize("&cUsage: /hrd time <player> <seconds>"));
                     return true;
                 }
                 Player target = Bukkit.getPlayerExact(args[1]);
                 if (target == null) {
-                    sender.sendMessage(ChatUtil.colorize("&cGracz " + args[1] + " nie jest online."));
+                    sender.sendMessage(ChatUtil.colorize("&cPlayer " + args[1] + " is not online."));
                     return true;
                 }
                 int seconds;
                 try {
                     seconds = Integer.parseInt(args[2]);
                 } catch (NumberFormatException e) {
-                    sender.sendMessage(ChatUtil.colorize("&cPodaj poprawną liczbę sekund."));
+                    sender.sendMessage(ChatUtil.colorize("&cPlease enter a valid number of seconds."));
                     return true;
                 }
                 if (!respawnManager.isWaiting(target.getUniqueId())) {
-                    sender.sendMessage(ChatUtil.colorize("&e" + target.getName() + " nie oczekuje obecnie na respawn."));
+                    sender.sendMessage(ChatUtil.colorize("&e" + target.getName() + " is not currently waiting to respawn."));
                     return true;
                 }
                 respawnManager.setRemainingSeconds(target, seconds);
-                sender.sendMessage(ChatUtil.colorize("&aUstawiono czas oczekiwania dla " + target.getName()
-                        + " na " + seconds + "s."));
+                sender.sendMessage(ChatUtil.colorize("&aSet the remaining wait time for " + target.getName()
+                        + " to " + seconds + "s."));
             }
             default -> sendUsage(sender);
         }
@@ -83,9 +82,9 @@ public class HrdCommand implements CommandExecutor, TabCompleter {
 
     private void sendUsage(CommandSender sender) {
         sender.sendMessage(ChatUtil.colorize("&6&l--- HardcoreRespawnDelay ---"));
-        sender.sendMessage(ChatUtil.colorize("&e/hrd reload &7- przeładowuje config.yml"));
-        sender.sendMessage(ChatUtil.colorize("&e/hrd revive <gracz> &7- natychmiast kończy oczekiwanie gracza"));
-        sender.sendMessage(ChatUtil.colorize("&e/hrd time <gracz> <sekundy> &7- ustawia pozostały czas oczekiwania"));
+        sender.sendMessage(ChatUtil.colorize("&e/hrd reload &7- reloads config.yml"));
+        sender.sendMessage(ChatUtil.colorize("&e/hrd revive <player> &7- immediately ends a player's wait"));
+        sender.sendMessage(ChatUtil.colorize("&e/hrd time <player> <seconds> &7- sets the remaining wait time"));
     }
 
     @Override

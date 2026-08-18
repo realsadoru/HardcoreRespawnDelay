@@ -11,9 +11,9 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import java.util.Map;
 
 /**
- * Obsługuje sekwencję: gracz umiera (standardowy drop itemów, standardowy ekran śmierci)
- * -> gracz klika "Respawn" (PlayerRespawnEvent) -> zamiast normalnego powrotu do gry,
- * trafia do trybu oczekiwania (spectator + timer).
+ * Handles the sequence: player dies (standard item drop, standard death screen)
+ * -> player clicks "Respawn" (PlayerRespawnEvent) -> instead of returning to the
+ * game normally, they enter the waiting state (spectator + timer).
  */
 public class DeathListener implements Listener {
 
@@ -31,11 +31,11 @@ public class DeathListener implements Listener {
 
         Player player = event.getPlayer();
 
-        // Celowo NIC nie zmieniamy w samym evencie śmierci:
-        // drop itemów, exp, wiadomość śmierci - wszystko zostaje standardowe (wymaganie).
+        // Intentionally NOT changing anything about the death event itself:
+        // item drop, exp, death message - all stay standard (requirement).
 
         if (player.hasPermission("hrd.bypass")) {
-            return; // gracz z bypassem odradza się normalnie, bez opóźnienia
+            return; // bypass players respawn normally, without delay
         }
 
         if (plugin.getConfig().getBoolean("broadcast-death", true)) {
@@ -43,7 +43,7 @@ public class DeathListener implements Listener {
             String timeFormatted = RespawnManager.formatTime(delaySeconds);
 
             String msgRaw = plugin.getConfig().getString("messages.death-broadcast",
-                    "&c☠ {player} zginął! Będzie mógł wrócić do gry za {time}.");
+                    "&c☠ {player} died! They will be able to respawn in {time}.");
             msgRaw = msgRaw.replace("{player}", player.getName()).replace("{time}", timeFormatted);
 
             Component broadcast = ChatUtil.colorize(msgRaw);
@@ -58,12 +58,12 @@ public class DeathListener implements Listener {
         Player player = event.getPlayer();
 
         if (player.hasPermission("hrd.bypass")) {
-            return; // normalny respawn
+            return; // normal respawn
         }
 
-        // Gracz właśnie kliknął "Respawn" na standardowym ekranie śmierci.
-        // Przechwytujemy to: zamiast pozwolić mu normalnie wrócić do gry,
-        // od razu po respawnie wrzucamy go w tryb oczekiwania.
+        // The player just clicked "Respawn" on the standard death screen.
+        // We intercept this: instead of letting them return to the game normally,
+        // we immediately put them into the waiting state right after respawn.
         respawnManager.beginWait(player);
     }
 }

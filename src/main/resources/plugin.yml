@@ -3,18 +3,18 @@ version: '1.0.0'
 main: com.example.hardcorerespawn.HardcoreRespawnDelay
 api-version: '1.21'
 author: Custom
-description: Zamienia permadeath w hardcore mode na czasowy respawn delay (spectator + timer na ekranie)
+description: Replaces permadeath in hardcore mode with a timed respawn delay (spectator + on-screen timer)
 
 commands:
   hrd:
-    description: Komendy administracyjne HardcoreRespawnDelay
+    description: Administrative commands for HardcoreRespawnDelay
     permission: hrd.admin
-    usage: /hrd <reload|revive <gracz>|time <gracz>>
+    usage: /hrd <reload|revive <player>|time <player>>
 
 permissions:
   hrd.admin:
-    description: Dostęp do komend administracyjnych pluginu
+    description: Access to the plugin's administrative commands
     default: op
   hrd.bypass:
-    description: Gracz z tym uprawnieniem odradza się natychmiast, bez opóźnienia
+    description: A player with this permission respawns instantly, without delay
     default: op

@@ -16,13 +16,13 @@ public final class HardcoreRespawnDelay extends JavaPlugin {
         this.respawnManager = new RespawnManager(this);
 
         getServer().getPluginManager().registerEvents(new DeathListener(this, respawnManager), this);
-        getServer().getPluginManager().registerEvents(new RestrictionListener(respawnManager), this);
+        getServer().getPluginManager().registerEvents(new RestrictionListener(this, respawnManager), this);
 
         HrdCommand hrdCommand = new HrdCommand(this, respawnManager);
         getCommand("hrd").setExecutor(hrdCommand);
         getCommand("hrd").setTabCompleter(hrdCommand);
 
-        getLogger().info("HardcoreRespawnDelay włączony. Opóźnienie respawnu: "
+        getLogger().info("HardcoreRespawnDelay enabled. Respawn delay: "
                 + getConfig().getInt("respawn-delay-seconds") + "s.");
     }
 
@@ -31,7 +31,7 @@ public final class HardcoreRespawnDelay extends JavaPlugin {
         if (respawnManager != null) {
             respawnManager.shutdown();
         }
-        getLogger().info("HardcoreRespawnDelay wyłączony.");
+        getLogger().info("HardcoreRespawnDelay disabled.");
     }
 
     public static HardcoreRespawnDelay getInstance() {

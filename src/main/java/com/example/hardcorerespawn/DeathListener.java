@@ -1,14 +1,11 @@
 package com.example.hardcorerespawn;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-
-import java.util.Map;
 
 /**
  * Handles the sequence: player dies (standard item drop, standard death screen)
@@ -29,26 +26,9 @@ public class DeathListener implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         if (!plugin.getConfig().getBoolean("enabled", true)) return;
 
-        Player player = event.getPlayer();
-
         // Intentionally NOT changing anything about the death event itself:
         // item drop, exp, death message - all stay standard (requirement).
-
-        if (player.hasPermission("hrd.bypass")) {
-            return; // bypass players respawn normally, without delay
-        }
-
-        if (plugin.getConfig().getBoolean("broadcast-death", true)) {
-            int delaySeconds = plugin.getConfig().getInt("respawn-delay-seconds", 300);
-            String timeFormatted = RespawnManager.formatTime(delaySeconds);
-
-            String msgRaw = plugin.getConfig().getString("messages.death-broadcast",
-                    "&c☠ {player} died! They will be able to respawn in {time}.");
-            msgRaw = msgRaw.replace("{player}", player.getName()).replace("{time}", timeFormatted);
-
-            Component broadcast = ChatUtil.colorize(msgRaw);
-            plugin.getServer().broadcast(broadcast);
-        }
+        // The vanilla death message is left untouched here on purpose.
     }
 
     @EventHandler(priority = EventPriority.HIGH)

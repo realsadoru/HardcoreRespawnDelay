@@ -214,8 +214,6 @@ public class RespawnManager {
             player.showTitle(title);
         }
 
-        sendMessage(player, "respawn-message", Map.of());
-
         if (plugin.getConfig().getBoolean("play-sound-on-respawn-ready", true)) {
             String soundName = plugin.getConfig().getString("sound-on-respawn-ready", "ENTITY_PLAYER_LEVELUP");
             try {
@@ -227,7 +225,7 @@ public class RespawnManager {
         }
 
         if (plugin.getConfig().getBoolean("broadcast-return", true)) {
-            String msgRaw = plugin.getConfig().getString("messages.return-broadcast", "&a✔ {player} is back in the game!");
+            String msgRaw = plugin.getConfig().getString("messages.return-broadcast", "&f{player} respawned");
             Component broadcast = ChatUtil.colorize(msgRaw.replace("{player}", player.getName()));
             plugin.getServer().broadcast(broadcast);
         }

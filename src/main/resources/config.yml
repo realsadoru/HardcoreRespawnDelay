@@ -33,9 +33,6 @@ show-actionbar-timer: false
 play-sound-on-respawn-ready: true
 sound-on-respawn-ready: "ENTITY_PLAYER_LEVELUP"
 
-# Whether to broadcast a server-wide message when a player dies and starts waiting.
-broadcast-death: true
-
 # Whether to broadcast a server-wide message when a player returns to the game.
 broadcast-return: true
 
@@ -44,8 +41,7 @@ broadcast-return: true
 # Placeholders: {player}, {time}, {seconds}
 # ---------------------------------------------------------
 messages:
-  death-broadcast: "&c☠ {player} died! They will be able to respawn in {time}."
-  return-broadcast: "&a✔ {player} is back in the game!"
+  return-broadcast: "&f{player} respawned"
 
   title-main: "&c&lWAITING TO RESPAWN"
   title-subtitle: "&fYou can respawn in: &e&l{time}"
@@ -54,8 +50,6 @@ messages:
   title-ready-subtitle: "&fPress any movement key"
 
   actionbar-waiting: "&7Respawn in: &e{time}"
-
-  respawn-message: "&aYou're back in the game! Good luck."
 
   rejoin-still-waiting: "&eStill waiting to respawn: &6&l{time}"
 

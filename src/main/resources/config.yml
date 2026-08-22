@@ -45,9 +45,6 @@ messages:
 
   title-subtitle: "&fYou can respawn in: &e&l{time}"
 
-  title-ready-main: "&a&lYOU CAN RESPAWN NOW!"
-  title-ready-subtitle: "&fPress any movement key"
-
   actionbar-waiting: "&7Respawn in: &e{time}"
 
   rejoin-still-waiting: "&eStill waiting to respawn: &6&l{time}"

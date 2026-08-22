@@ -201,18 +201,6 @@ public class RespawnManager {
 
         player.teleport(resolveRespawnLocation(player));
 
-        if (plugin.getConfig().getBoolean("show-title-timer", true)) {
-            String mainRaw = plugin.getConfig().getString("messages.title-ready-main", "&a&lYOU CAN RESPAWN NOW!");
-            String subRaw = plugin.getConfig().getString("messages.title-ready-subtitle", "&fPress any movement key");
-
-            Title title = Title.title(
-                    ChatUtil.colorize(mainRaw),
-                    ChatUtil.colorize(subRaw),
-                    Title.Times.times(Duration.ofMillis(200), Duration.ofMillis(2000), Duration.ofMillis(500))
-            );
-            player.showTitle(title);
-        }
-
         if (plugin.getConfig().getBoolean("play-sound-on-respawn-ready", true)) {
             String soundName = plugin.getConfig().getString("sound-on-respawn-ready", "ENTITY_PLAYER_LEVELUP");
             try {

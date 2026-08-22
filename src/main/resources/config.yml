@@ -43,7 +43,6 @@ broadcast-return: true
 messages:
   return-broadcast: "&f{player} respawned"
 
-  title-main: "&c&lWAITING TO RESPAWN"
   title-subtitle: "&fYou can respawn in: &e&l{time}"
 
   title-ready-main: "&a&lYOU CAN RESPAWN NOW!"

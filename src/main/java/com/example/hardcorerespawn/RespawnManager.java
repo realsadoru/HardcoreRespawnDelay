@@ -174,16 +174,15 @@ public class RespawnManager {
         String timeFormatted = formatTime(remainingSeconds);
 
         if (plugin.getConfig().getBoolean("show-title-timer", true)) {
-            String mainRaw = plugin.getConfig().getString("messages.title-main", "&c&lWAITING TO RESPAWN");
             String subRaw = plugin.getConfig().getString("messages.title-subtitle", "&fYou can respawn in: &e&l{time}");
 
-            Component main = ChatUtil.colorize(mainRaw);
+            Component main = Component.empty();
             Component sub = ChatUtil.colorize(subRaw.replace("{time}", timeFormatted));
 
             Title title = Title.title(
                     main,
                     sub,
-                    Title.Times.times(Duration.ofMillis(200), Duration.ofMillis(1200), Duration.ofMillis(200))
+                    Title.Times.times(Duration.ZERO, Duration.ofMillis(1500), Duration.ofMillis(250))
             );
             player.showTitle(title);
         }

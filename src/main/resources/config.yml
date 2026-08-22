@@ -43,7 +43,7 @@ broadcast-return: true
 messages:
   return-broadcast: "&f{player} respawned"
 
-  title-subtitle: "&fYou can respawn in: &e&l{time}"
+  title-subtitle: "&fYou will respawn in: &e&l{time}"
 
   actionbar-waiting: "&7Respawn in: &e{time}"
 
